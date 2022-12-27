@@ -1,11 +1,14 @@
 package flat.io.myrh.user;
 
+import flat.io.myrh.role.Role;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.util.Collection;
 
 @Entity
 @Table(name = "users")
+@Data
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

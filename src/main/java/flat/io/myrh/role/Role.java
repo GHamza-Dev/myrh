@@ -1,4 +1,4 @@
-package flat.io.myrh.user;
+package flat.io.myrh.role;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import lombok.Setter;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id; 
 
     @Column(length = 55)
     private String name;
