@@ -26,19 +26,12 @@ public class AuthService {
 
     public Response authenticate(String email, String password) {
 
-        UserDetails userDetails = null;
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
 
-        try {
-            Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(email, password));
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
-            userDetails = (UserDetails) authentication.getPrincipal();
+        String generatedToken = jwt.generateToken(userDetails);
 
-            String generatedToken = jwt.generateToken(userDetails);
-
-            return new AuthResponse("Authentication succeeded!", generatedToken);
-
-        } catch (BadCredentialsException e) {
-            throw e;
-        }
+        return new AuthResponse("Authentication succeeded!", generatedToken);
     }
 }

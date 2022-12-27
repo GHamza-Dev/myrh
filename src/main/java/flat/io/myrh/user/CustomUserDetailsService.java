@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         AppUser appUser = userRepository.findAppUserByEmail(email);
-        System.out.println(appUser);
+
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         for (Role role: appUser.getRoles()) {

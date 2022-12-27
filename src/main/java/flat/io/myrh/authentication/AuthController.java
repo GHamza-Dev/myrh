@@ -1,6 +1,7 @@
 package flat.io.myrh.authentication;
 
 
+import flat.io.myrh.exception.ResourceNotFoundException;
 import flat.io.myrh.response.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,11 +21,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<Response> login(@RequestBody AuthRequest request){
-        try {
-            Response response = authService.authenticate(request.getEmail(),request.getPassword());
-            return ResponseEntity.ok(response);
-        }catch (Exception e){
-            return ResponseEntity.status(403).body(new Response(e.getMessage(),403));
-        }
+        Response response = authService.authenticate(request.getEmail(),request.getPassword());
+        return ResponseEntity.ok(response);
     }
 }
