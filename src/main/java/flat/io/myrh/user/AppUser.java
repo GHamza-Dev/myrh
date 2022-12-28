@@ -1,9 +1,11 @@
 package flat.io.myrh.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import flat.io.myrh.role.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Entity
@@ -18,6 +20,7 @@ public class AppUser {
     @Column(length = 55)
     private String email;
 
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(length = 55)
     private String password;
 
@@ -30,4 +33,9 @@ public class AppUser {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles;
+
+    public void setPrimaryRole(Role role){
+        this.roles = new ArrayList<>();
+        this.roles.add(role);
+    }
 }
