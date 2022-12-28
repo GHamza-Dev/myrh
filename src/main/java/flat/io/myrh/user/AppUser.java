@@ -9,6 +9,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "users")
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
