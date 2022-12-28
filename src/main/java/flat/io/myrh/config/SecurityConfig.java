@@ -36,6 +36,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/users/login/**")
                 .permitAll()
+                .requestMatchers("/recruiters/register/**")
+                .permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
