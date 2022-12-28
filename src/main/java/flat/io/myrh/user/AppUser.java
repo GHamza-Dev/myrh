@@ -27,6 +27,6 @@ public class AppUser {
     private String image;
 
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles;
 }

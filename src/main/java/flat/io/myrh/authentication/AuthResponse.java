@@ -3,8 +3,6 @@ package flat.io.myrh.authentication;
 
 import flat.io.myrh.response.Response;
 
-import java.util.Collection;
-
 public class AuthResponse extends Response {
     private String token;
 
@@ -12,11 +10,6 @@ public class AuthResponse extends Response {
     }
 
     public AuthResponse(String token) {
-        this.token = token;
-    }
-
-    public AuthResponse(String message, Integer status, Collection data, String token) {
-        super(message, status, data);
         this.token = token;
     }
 

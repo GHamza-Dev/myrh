@@ -3,13 +3,11 @@ package flat.io.myrh.jwt;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -24,6 +22,12 @@ public class JWT {
 
     public String extractRole(String token){
         return extractClaim(token,(claims)-> (String) claims.get("role"));
+    }
+
+    public Collection<SimpleGrantedAuthority> extractRoles(String token){
+        return extractClaim(token,
+                (claims)-> (Collection<SimpleGrantedAuthority>) claims.get("roles")
+        );
     }
 
     public Date extractExpiration(String token) {

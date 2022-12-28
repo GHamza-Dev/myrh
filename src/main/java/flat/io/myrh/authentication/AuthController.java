@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/users")
 public class AuthController {
@@ -23,5 +25,10 @@ public class AuthController {
     public ResponseEntity<Response> login(@RequestBody AuthRequest request){
         Response response = authService.authenticate(request.getEmail(),request.getPassword());
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/p")
+    public ResponseEntity<Principal> p(Principal principal){
+        return ResponseEntity.ok(principal);
     }
 }
