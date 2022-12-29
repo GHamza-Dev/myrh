@@ -1,4 +1,4 @@
-package flat.io.myrh.recruiter;
+package flat.io.myrh.application.recruiter;
 
 import jakarta.validation.constraints.*;
 import lombok.Data;

@@ -1,8 +1,8 @@
-package flat.io.myrh.authentication;
+package flat.io.myrh.application.authentication;
 
 
+import flat.io.myrh.application.user.UserRepository;
 import flat.io.myrh.response.Response;
-import flat.io.myrh.user.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

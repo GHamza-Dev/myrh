@@ -1,7 +1,7 @@
-package flat.io.myrh.offer;
+package flat.io.myrh.application.offer;
 
-import flat.io.myrh.education.Education;
-import flat.io.myrh.jobtitle.JobTitle;
+import flat.io.myrh.application.education.Education;
+import flat.io.myrh.application.jobtitle.JobTitle;
 import jakarta.persistence.*;
 
 @Entity

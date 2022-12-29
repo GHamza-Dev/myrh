@@ -1,6 +1,6 @@
-package flat.io.myrh.role;
+package flat.io.myrh.application.role;
 
-import flat.io.myrh.user.AppUser;
+import flat.io.myrh.application.user.AppUser;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

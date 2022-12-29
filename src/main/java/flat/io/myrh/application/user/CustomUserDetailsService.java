@@ -1,6 +1,6 @@
-package flat.io.myrh.user;
+package flat.io.myrh.application.user;
 
-import flat.io.myrh.role.Role;
+import flat.io.myrh.application.role.Role;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,4 +1,4 @@
-package flat.io.myrh.jobtitle;
+package flat.io.myrh.application.jobtitle;
 
 import jakarta.persistence.*;
 

@@ -1,6 +1,6 @@
-package flat.io.myrh.recruiter;
+package flat.io.myrh.application.recruiter;
 
-import flat.io.myrh.role.RoleRepository;
+import flat.io.myrh.application.role.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

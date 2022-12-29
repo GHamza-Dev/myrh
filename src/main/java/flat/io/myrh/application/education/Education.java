@@ -1,4 +1,4 @@
-package flat.io.myrh.education;
+package flat.io.myrh.application.education;
 
 import jakarta.persistence.*;
 

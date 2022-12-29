@@ -1,4 +1,4 @@
-package flat.io.myrh.user;
+package flat.io.myrh.application.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -1,4 +1,4 @@
-package flat.io.myrh.authentication;
+package flat.io.myrh.application.authentication;
 
 
 import flat.io.myrh.response.Response;

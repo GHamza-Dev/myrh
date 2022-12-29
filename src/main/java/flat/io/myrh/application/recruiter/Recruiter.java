@@ -1,12 +1,9 @@
-package flat.io.myrh.recruiter;
+package flat.io.myrh.application.recruiter;
 
-import flat.io.myrh.user.AppUser;
+import flat.io.myrh.application.user.AppUser;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data

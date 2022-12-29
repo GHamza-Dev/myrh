@@ -1,4 +1,4 @@
-package flat.io.myrh.recruiter;
+package flat.io.myrh.application.recruiter;
 
 import flat.io.myrh.response.DataResponse;
 import flat.io.myrh.response.Response;

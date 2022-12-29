@@ -1,12 +1,10 @@
-package flat.io.myrh.user;
+package flat.io.myrh.application.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import flat.io.myrh.role.Role;
+import flat.io.myrh.application.role.Role;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.Collection;
