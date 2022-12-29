@@ -1,9 +1,12 @@
 package flat.io.myrh.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import flat.io.myrh.role.Role;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,8 +20,9 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 55)
+    @Column(length = 55, unique = true)
     private String email;
+
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Column(length = 55)
@@ -31,7 +35,8 @@ public class AppUser {
     private String image;
 
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     private Collection<Role> roles;
 
     public void setPrimaryRole(Role role){

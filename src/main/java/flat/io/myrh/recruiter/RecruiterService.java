@@ -1,21 +1,19 @@
 package flat.io.myrh.recruiter;
 
-import flat.io.myrh.response.Response;
-import flat.io.myrh.role.Role;
+import flat.io.myrh.role.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
+
 
 @Service
 @RequiredArgsConstructor
 public class RecruiterService {
 
     private final RecruiterRepository recruiterRepository;
+    private final RoleRepository roleRepository;
 
     public Recruiter createRecruiter(RecruiterRequest request){
-        System.out.println(recruiterRepository);
 
         Recruiter recruiter = new Recruiter();
         recruiter.setEmail(request.getEmail());
@@ -23,7 +21,7 @@ public class RecruiterService {
         recruiter.setPassword(request.getPassword());
         recruiter.setImage(request.getImage());
         recruiter.setCompanyName(request.getCompanyName());
-        recruiter.setPrimaryRole(new Role(request.getRoleId()));
+        recruiter.setPrimaryRole(roleRepository.findById(request.getRoleId()).orElseGet(null));
 
         recruiterRepository.save(recruiter);
 
