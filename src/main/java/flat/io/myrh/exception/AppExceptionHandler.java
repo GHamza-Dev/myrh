@@ -44,6 +44,7 @@ public class AppExceptionHandler {
     public final ResponseEntity<Response> handleRuntimeExceptions(RuntimeException e) {
         HashMap<String, String> errors = new HashMap<>();
         errors.put("error","Ops something went wrong!");
+        System.out.println(e.getMessage());
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Ops something went wrong!",500,errors));
     }
