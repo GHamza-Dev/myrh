@@ -1,6 +1,8 @@
 package flat.io.myrh.application.recruiter;
 
 import flat.io.myrh.application.role.RoleRepository;
+import flat.io.myrh.application.role.RoleService;
+import flat.io.myrh.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +13,13 @@ import org.springframework.stereotype.Service;
 public class RecruiterService {
 
     private final RecruiterRepository recruiterRepository;
-    private final RoleRepository roleRepository;
+    private final RoleService roleService;
+
+    public Recruiter getRecruiterById(Long id){
+        return recruiterRepository
+                .findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No recruiter found with the id: "+id));
+    }
 
     public Recruiter createRecruiter(RecruiterRequest request){
 
@@ -21,7 +29,7 @@ public class RecruiterService {
         recruiter.setPassword(request.getPassword());
         recruiter.setImage(request.getImage());
         recruiter.setCompanyName(request.getCompanyName());
-        recruiter.setPrimaryRole(roleRepository.findById(request.getRoleId()).orElseGet(null));
+        recruiter.setPrimaryRole(roleService.getRoleById(request.getRoleId()));
 
         recruiterRepository.save(recruiter);
 

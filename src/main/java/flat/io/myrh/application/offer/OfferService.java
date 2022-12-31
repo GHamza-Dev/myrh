@@ -3,7 +3,9 @@ package flat.io.myrh.application.offer;
 import flat.io.myrh.application.education.Education;
 import flat.io.myrh.application.jobtitle.JobTitle;
 import flat.io.myrh.application.recruiter.Recruiter;
+import flat.io.myrh.application.user.AppUser;
 import flat.io.myrh.application.user.UserRepository;
+import flat.io.myrh.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,11 @@ public class OfferService {
 
     public Offer createOffer(OfferRequest request, String email){
 
-        Long recruiterId = userRepository.findAppUserByEmail(email).getId();
+        AppUser user = userRepository.findAppUserByEmail(email);
+        Long recruiterId = null;
+
+        if(user != null ) recruiterId = user.getId();
+        else throw new ResourceNotFoundException("Recruiter not found");
 
 
         Offer offer = new Offer();
