@@ -37,6 +37,13 @@ public class AppUser {
     @ManyToMany(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
     private Collection<Role> roles;
 
+    public AppUser(Long id) {
+        this.id = id;
+    }
+
+    public AppUser() {
+    }
+
     public void setPrimaryRole(Role role){
         this.roles = new ArrayList<>();
         this.roles.add(role);

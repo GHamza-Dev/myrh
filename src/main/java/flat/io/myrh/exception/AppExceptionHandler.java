@@ -40,5 +40,20 @@ public class AppExceptionHandler {
         return ResponseEntity.status(400).body(new ErrorResponse("Please fallout your fields carefully",400,errors));
     }
 
+    @ExceptionHandler(RuntimeException.class)
+    public final ResponseEntity<Response> handleRuntimeExceptions(RuntimeException e) {
+        HashMap<String, String> errors = new HashMap<>();
+        errors.put("error","Ops something went wrong!");
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Ops something went wrong!",500,errors));
+    }
+
+    @ExceptionHandler(CustomRunTimeException.class)
+    public final ResponseEntity<Response> handleCustomRunTimeException(CustomRunTimeException e) {
+        HashMap<String, String> errors = new HashMap<>();
+        errors.put("error", e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(e.getMessage(),500,errors));
+    }
 
 }
