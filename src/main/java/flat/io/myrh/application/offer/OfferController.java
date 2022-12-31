@@ -29,6 +29,26 @@ public class OfferController {
         return ResponseEntity.ok(new DataResponse("Offer created successfully", 200, offer));
     }
 
+    @PostMapping("/accept")
+    public ResponseEntity<Response> accept(@RequestParam("id") Long id){
+
+        if(offerService.acceptOffer(id)){
+            return ResponseEntity.ok(new Response("Offer updated successfully",200));
+        }
+
+        return ResponseEntity.status(500).body(new Response("Ops something went wrong!",500));
+    }
+
+    @PostMapping("/reject")
+    public ResponseEntity<Response> reject(@RequestParam("id") Long id){
+
+        if(offerService.rejectOffer(id)){
+            return ResponseEntity.ok(new Response("Offer updated successfully",200));
+        }
+
+        return ResponseEntity.status(500).body(new Response("Ops something went wrong!",500));
+    }
+
     @GetMapping("/all")
     public ResponseEntity<Response> getOffers(){
         return ResponseEntity.ok().body(new DataResponse("Offers list",200,offerService.getALlOffers()));

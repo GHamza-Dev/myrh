@@ -25,7 +25,7 @@ public class AppExceptionHandler {
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<Response> handleResourceNotFoundException(ResourceNotFoundException e){
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Response(e.getMessage(),404));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Response(e.getMessage(),400));
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
