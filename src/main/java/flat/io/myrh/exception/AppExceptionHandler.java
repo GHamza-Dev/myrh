@@ -2,6 +2,7 @@ package flat.io.myrh.exception;
 
 import flat.io.myrh.response.ErrorResponse;
 import flat.io.myrh.response.Response;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -11,9 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class AppExceptionHandler {
@@ -55,6 +54,11 @@ public class AppExceptionHandler {
         errors.put("error", e.getMessage());
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse(e.getMessage(),500,errors));
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    public final ResponseEntity<Response> handleExpiredJwtException(ExpiredJwtException e) {
+        return ResponseEntity.status(401).body(new Response("Token expired",401));
     }
 
 }
