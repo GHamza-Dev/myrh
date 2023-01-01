@@ -42,8 +42,8 @@ public class FileStorageService {
             return fileName;
         } catch (IOException e) {
             System.out.println("Error: "+e);
+            return null;
         }
-        return null;
     }
 
     private String generateUniqueFileName(MultipartFile file){
