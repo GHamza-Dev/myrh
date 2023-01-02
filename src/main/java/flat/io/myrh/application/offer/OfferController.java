@@ -6,6 +6,7 @@ import flat.io.myrh.response.Response;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -18,6 +19,7 @@ public class OfferController {
     private final OfferService offerService;
 
     @PostMapping("/create")
+    @Secured({"ROLE_RECRUITER"})
     public ResponseEntity<Response> createOffer(@RequestBody @Valid OfferRequest offerRequest, Principal principal){
         String email = principal.getName();
         Offer offer = offerService.createOffer(offerRequest,email);
@@ -30,6 +32,7 @@ public class OfferController {
     }
 
     @PostMapping("/accept")
+    @Secured({"ROLE_AGENT"})
     public ResponseEntity<Response> accept(@RequestParam("id") Long id){
 
         if(offerService.acceptOffer(id)){
@@ -40,6 +43,7 @@ public class OfferController {
     }
 
     @PostMapping("/reject")
+    @Secured({"ROLE_AGENT"})
     public ResponseEntity<Response> reject(@RequestParam("id") Long id){
 
         if(offerService.rejectOffer(id)){

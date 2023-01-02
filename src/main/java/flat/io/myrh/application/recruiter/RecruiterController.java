@@ -5,9 +5,11 @@ import flat.io.myrh.application.offer.OfferRequest;
 import flat.io.myrh.response.DataResponse;
 import flat.io.myrh.response.ErrorResponse;
 import flat.io.myrh.response.Response;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,6 +36,7 @@ public class RecruiterController {
     }
 
     @PostMapping("/profile/update-image")
+    @Secured({"ROLE_RECRUITER"})
     public ResponseEntity<Response> createOffer(@RequestParam(value = "image",defaultValue = "") MultipartFile image, Principal principal) {
         String email = principal.getName();
 
