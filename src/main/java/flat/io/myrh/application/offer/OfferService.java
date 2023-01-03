@@ -7,6 +7,8 @@ import flat.io.myrh.application.user.AppUser;
 import flat.io.myrh.application.user.UserRepository;
 import flat.io.myrh.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -68,8 +70,9 @@ public class OfferService {
         return offer.getStatus().equals("REJECTED");
     }
 
-    public List<Offer> getALlOffers() {
-        return offerRepository.findAll();
+    public Page<Offer> getAllOffers(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size);
+        return offerRepository.findAll(pageRequest);
     }
 
     public Offer getOfferById(Long id){

@@ -2,6 +2,7 @@ package flat.io.myrh.application.offer;
 
 import flat.io.myrh.exception.CustomRunTimeException;
 import flat.io.myrh.response.DataResponse;
+import flat.io.myrh.response.PagedResponse;
 import flat.io.myrh.response.Response;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -54,7 +55,7 @@ public class OfferController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<Response> getOffers(){
-        return ResponseEntity.ok().body(new DataResponse("Offers list",200,offerService.getALlOffers()));
+    public ResponseEntity<Response> getOffers(@RequestParam(value = "page",defaultValue = "0") int page,@RequestParam(value = "size",defaultValue = "5") int size){
+        return ResponseEntity.ok().body(new PagedResponse("Offers list",200,offerService.getAllOffers(page,size)));
     }
 }

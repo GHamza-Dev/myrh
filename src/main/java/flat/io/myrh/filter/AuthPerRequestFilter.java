@@ -39,6 +39,7 @@ public class AuthPerRequestFilter extends OncePerRequestFilter {
             filterChain.doFilter(request,response);
             return;
         }
+        System.out.println("Inside the filter...");
 
         jwtToken = authHeader.substring(7);
         email = jwt.extractUsername(jwtToken);
