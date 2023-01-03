@@ -11,6 +11,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import javax.naming.AuthenticationException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,7 +44,7 @@ public class AppExceptionHandler {
     public final ResponseEntity<Response> handleRuntimeExceptions(RuntimeException e) {
         HashMap<String, String> errors = new HashMap<>();
         errors.put("error","Ops something went wrong!");
-        System.out.println(e.getMessage());
+        System.out.println(e);
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new ErrorResponse("Ops something went wrong!",500,errors));
     }
@@ -59,6 +60,11 @@ public class AppExceptionHandler {
     @ExceptionHandler(ExpiredJwtException.class)
     public final ResponseEntity<Response> handleExpiredJwtException(ExpiredJwtException e) {
         return ResponseEntity.status(401).body(new Response("Token expired",401));
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    public final ResponseEntity<Response> handleAuthenticationException(AuthenticationException e) {
+        return ResponseEntity.status(400).body(new Response(e.getMessage(),400));
     }
 
 }

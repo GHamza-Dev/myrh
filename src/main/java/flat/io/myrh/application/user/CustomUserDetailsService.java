@@ -23,6 +23,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         AppUser appUser = userRepository.findAppUserByEmail(email);
 
+        if(appUser == null) throw new UsernameNotFoundException("No user found with the email: "+email);
+
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
 
         for (Role role: appUser.getRoles()) {
