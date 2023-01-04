@@ -34,7 +34,7 @@ public class RecruiterService {
         recruiter.setPassword(request.getPassword());
         recruiter.setImage(null);
         recruiter.setCompanyName(request.getCompanyName());
-        recruiter.setPrimaryRole(roleService.getRoleById(request.getRoleId()));
+        recruiter.setPrimaryRole(roleService.getRoleById(1L));
 
         recruiterRepository.save(recruiter);
 

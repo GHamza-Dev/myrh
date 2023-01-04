@@ -16,9 +16,7 @@ public class RecruiterRequest {
     @NotNull
     @Size(min = 6,message = "Password should be longer than 6!")
     private String password;
-    private String image;
-
-    @NotNull(message = "Role is required!")
+    private String image = null;
     private Long roleId;
 
     @NotNull(message = "Company name is required!")
