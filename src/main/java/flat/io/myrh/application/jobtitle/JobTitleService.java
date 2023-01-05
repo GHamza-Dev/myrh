@@ -4,6 +4,8 @@ import flat.io.myrh.exception.ResourceNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class JobTitleService {
@@ -15,4 +17,7 @@ public class JobTitleService {
                 .orElseThrow(() -> new ResourceNotFoundException("No job title found with the id: "+id));
     }
 
+    public List<JobTitle> getJobTitles(){
+        return jobTitleRepository.findAll();
+    }
 }

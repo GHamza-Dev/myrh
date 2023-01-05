@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/users/login/**", "/recruiters/register/**", "/offers/all/**"
+                        "/users/login/**", "/recruiters/register/**", "/offers/all/**", "/job-titles/all/**", "/educations/all/**"
                 )
                 .permitAll()
                 .anyRequest()
