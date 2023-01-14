@@ -44,7 +44,7 @@ public class OfferService {
         return offer;
     }
 
-    public boolean acceptOffer(Long id){
+    public boolean acceptOffer(Long id, String review){
         Offer offer = getOfferById(id);
 
         if (!offer.getStatus().equals("PENDING")){
@@ -52,12 +52,13 @@ public class OfferService {
         }
 
         offer.setStatus("ACCEPTED");
+        offer.setReviewDescription(review);
         offerRepository.save(offer);
 
         return offer.getStatus().equals("ACCEPTED");
     }
 
-    public boolean rejectOffer(Long id){
+    public boolean rejectOffer(Long id, String review){
         Offer offer = getOfferById(id);
 
         if (!offer.getStatus().equals("PENDING")){
@@ -65,6 +66,7 @@ public class OfferService {
         }
 
         offer.setStatus("REJECTED");
+        offer.setReviewDescription(review);
         offerRepository.save(offer);
 
         return offer.getStatus().equals("REJECTED");

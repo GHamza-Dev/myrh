@@ -35,9 +35,9 @@ public class OfferController {
 
     @PostMapping("/accept")
     @Secured({"ROLE_AGENT"})
-    public ResponseEntity<Response> accept(@RequestParam("id") Long id){
+    public ResponseEntity<Response> accept(@RequestParam("id") Long id, @RequestParam("review") String review){
 
-        if(offerService.acceptOffer(id)){
+        if(offerService.acceptOffer(id, review)){
             return ResponseEntity.ok(new Response("Offer updated successfully",200));
         }
 
@@ -46,9 +46,9 @@ public class OfferController {
 
     @PostMapping("/reject")
     @Secured({"ROLE_AGENT"})
-    public ResponseEntity<Response> reject(@RequestParam("id") Long id){
+    public ResponseEntity<Response> reject(@RequestParam("id") Long id, @RequestParam("review") String review){
 
-        if(offerService.rejectOffer(id)){
+        if(offerService.rejectOffer(id, review)){
             return ResponseEntity.ok(new Response("Offer updated successfully",200));
         }
 
