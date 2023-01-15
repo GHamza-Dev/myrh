@@ -8,6 +8,8 @@ import flat.io.myrh.application.recruiter.Recruiter;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Entity
 @Data
 public class Offer {
@@ -27,6 +29,9 @@ public class Offer {
 
     @Column(length = 33)
     private String status = "PENDING";
+
+    @Column(name = "created_at")
+    private Date createdAt = new Date();
 
     @Column(length = 65535,columnDefinition="Text") // to generate data type text
     private String reviewDescription;
