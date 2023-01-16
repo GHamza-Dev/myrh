@@ -59,4 +59,13 @@ public class OfferController {
     public ResponseEntity<Response> getOffers(@RequestParam(value = "page",defaultValue = "0") int page,@RequestParam(value = "size",defaultValue = "5") int size){
         return ResponseEntity.ok().body(new PagedResponse("Offers list",200,offerService.getAllOffers(page,size)));
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<Response> searchOffers(@RequestParam(value = "page", defaultValue = "0") int page,
+                                                 @RequestParam(value = "size", defaultValue = "5") int size,
+                                                 @RequestParam(value = "title", defaultValue = "*") String title,
+                                                 @RequestParam(value = "jobTitleId", defaultValue = "0") Long jobTitleId,
+                                                 @RequestParam(value = "city", defaultValue = "*") String city){
+        return ResponseEntity.ok().body(new PagedResponse("Offers list",200,offerService.searchOffers(page, size, title, jobTitleId, city)));
+    }
 }

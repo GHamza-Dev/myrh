@@ -77,6 +77,14 @@ public class OfferService {
         return offerRepository.findAll(pageRequest);
     }
 
+    public Page<Offer> searchOffers(int page, int size, String title, Long jobTitleId, String city){
+        PageRequest pageRequest = PageRequest.of(page, size);
+        title = !title.equals("*") ? title : null;
+        jobTitleId = jobTitleId != 0L ? jobTitleId : null;
+        city = !city.equals("*") ? city : null;
+        return offerRepository.searchByFilter(title,jobTitleId,city,pageRequest);
+    }
+
     public Offer getOfferById(Long id){
         return offerRepository
                 .findById(id)
